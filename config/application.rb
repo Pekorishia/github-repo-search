@@ -15,5 +15,18 @@ module Myapp
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    # All translations from config/locales/*.rb,yml are auto loaded.
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**/*.{rb,yml}').to_s]
+
+    # Don't generate system test files.
+    config.generators.system_tests = nil
+
+    # Devise default locale
+    config.i18n.default_locale = :'en'
+
+    I18n.available_locales = [:en]
+
+    I18n.default_locale = :en
   end
 end
