@@ -34,6 +34,34 @@ RSpec.describe GithubRepositoryPresenter, type: :presenter do
     it { expect(subject.stars).to eq expected_string }
   end
 
+  describe '#description' do
+    let(:max_description_length) { 200 }
+
+    let(:expected_string) do
+      github_repository.description.truncate(max_description_length,
+                                             separator: ' ')
+    end
+
+    it { expect(subject.description).to eq expected_string }
+
+    context 'when the description does not exceed the max description length' do
+      it { expect(subject.description.end_with?('...')).to be_falsey }
+    end
+
+    context 'when the description exceeds the max description length' do
+      before do
+        data[:description] = 'my giant repository description that is soo '\
+                             'huge that needs to be splitted into several '\
+                             'lines. This also, means that when this '\
+                             'description has to be shown in a item, it will '\
+                             'probably need to be truncated to fill the'\
+                             'space correctly'
+      end
+
+      it { expect(subject.description.end_with?('...')).to be_truthy }
+    end
+  end
+
   describe '#footer' do
     let(:expected_string) do
       "language: #{github_repository.language}, "\
