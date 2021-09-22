@@ -8,7 +8,7 @@ class GithubRepositoryPresenter < SimpleDelegator
   end
 
   def description
-    super.truncate(MAX_DESCRIPTION_LENGTH, separator: ' ')
+    super&.truncate(MAX_DESCRIPTION_LENGTH, separator: ' ')
   end
 
   def footer

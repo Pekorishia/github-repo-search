@@ -44,6 +44,12 @@ RSpec.describe GithubRepositoryPresenter, type: :presenter do
 
     it { expect(subject.description).to eq expected_string }
 
+    context 'when the description is nil' do
+      before { data[:description] = nil }
+
+      it { expect(subject.description).to be_nil }
+    end
+
     context 'when the description does not exceed the max description length' do
       it { expect(subject.description.end_with?('...')).to be_falsey }
     end
