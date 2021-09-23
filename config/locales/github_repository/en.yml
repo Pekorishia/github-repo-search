@@ -1,0 +1,9 @@
+---
+en:
+  repository_search:
+    form:
+      title: repository search
+      description: get started by searching for a repository by name
+      button: search
+    result:
+      title: search result
