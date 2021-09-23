@@ -1,1 +1,39 @@
-<body></body>
+<div align="center" class="justify-content-center opacity-70 header">
+  <div style="float:left; padding: 10px">
+    <%= link_to root_path do %>
+      <i class="fas fa-arrow-left l-size"></i>
+    <% end %>
+  </div>
+
+  <h1><%= t('repository_search.result.title') %></h1>
+</div>
+
+<div class="container d-flex h-100 bg-light-gray">
+  <div class="row justify-content-center align-self-center opacity-70 search-body">
+    <div>
+      <ul class="list-unstyled overflow-auto">
+        <% @repos.each do |repo| %>
+          <li class="repo-list-item">
+            <a href=<%= repo.html_url %> >
+              <div id="header">
+              <h4 class="float-left"><%= repo.header %></h4>
+                <p class="float-right">
+                  <i class="far fa-star"></i> <%= repo.stargazers_count %>
+                </p>
+              </div>
+              <div class="clear-style"></div>
+              <p class="text-justify"><%= repo.description %></p>
+              <footer class="text-left"><%= repo.footer %></footer>
+            </a>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="apple_pagination">
+      <div class="page_info">
+        <%= page_entries_info @repos %>
+      </div>
+      <%= will_paginate @repos, :container => false %>
+    </div>
+  </div>
+</div>
