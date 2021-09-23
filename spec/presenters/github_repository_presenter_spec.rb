@@ -28,14 +28,8 @@ RSpec.describe GithubRepositoryPresenter, type: :presenter do
     it { expect(subject.header).to eq expected_string }
   end
 
-  describe '#stars' do
-    let(:expected_string) { "stars: #{github_repository.stargazers_count}" }
-
-    it { expect(subject.stars).to eq expected_string }
-  end
-
   describe '#description' do
-    let(:max_description_length) { 200 }
+    let(:max_description_length) { 100 }
 
     let(:expected_string) do
       github_repository.description.truncate(max_description_length,
