@@ -1,4 +1,16 @@
 
 <body>
+  <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center opacity-70">
+    <div><h1><%= t('repository_search.form.title') %></h1></div>
 
+    <div>
+      <p><%= t('repository_search.form.description') %></p>
+      <%= form_tag github_repository_index_path, method: :get do %>
+        <div class="input-group">
+          <%= text_field_tag :repo_name, nil, placeholder: 'repo name', class: 'form-control' %>
+          <%= submit_tag "#{t('repository_search.form.button')}", class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </body>
